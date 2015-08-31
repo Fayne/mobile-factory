@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'sqlsrv',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,13 +54,13 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'forge',
-			'username'  => 'forge',
-			'password'  => '',
+			'host'      => getenv('MYSQL_HOST'),
+			'database'  => getenv('MYSQL_DB'),
+			'username'  => getenv('MYSQL_USER'),
+			'password'  => getenv('MYSQL_PASS'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'prefix'    => getenv('MYSQL_PREFIX'),
 		),
 
 		'pgsql' => array(
@@ -76,11 +76,12 @@ return array(
 
 		'sqlsrv' => array(
 			'driver'   => 'sqlsrv',
-			'host'     => 'localhost',
-			'database' => 'database',
-			'username' => 'root',
-			'password' => '',
-			'prefix'   => '',
+			'host'     => getenv('SQLSERVER_HOST'),
+			'port'     => getenv('SQLSERVER_PORT'),
+			'database' => getenv('SQLSERVER_DB'),
+			'username' => getenv('SQLSERVER_USER'),
+			'password' => getenv('SQLSERVER_PASS'),
+			'prefix'   => getenv('SQLSERVER_PREFIX'),
 		),
 
 	),

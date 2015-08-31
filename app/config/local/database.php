@@ -22,24 +22,23 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'homestead',
-			'username'  => 'homestead',
-			'password'  => 'secret',
+			'host'      => getenv('MYSQL_HOST'),
+			'database'  => getenv('MYSQL_DB'),
+			'username'  => getenv('MYSQL_USER'),
+			'password'  => getenv('MYSQL_PASS'),
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
-			'prefix'    => '',
+			'prefix'    => getenv('MYSQL_PREFIX'),
 		),
 
-		'pgsql' => array(
-			'driver'   => 'pgsql',
-			'host'     => 'localhost',
-			'database' => 'homestead',
-			'username' => 'homestead',
-			'password' => 'secret',
-			'charset'  => 'utf8',
-			'prefix'   => '',
-			'schema'   => 'public',
+		'sqlsrv' => array(
+			'driver'   => 'sqlsrv',
+			'host'     => getenv('SQLSERVER_HOST'),
+			'port'     => getenv('SQLSERVER_PORT'),
+			'database' => getenv('SQLSERVER_DB'),
+			'username' => getenv('SQLSERVER_USER'),
+			'password' => getenv('SQLSERVER_PASS'),
+			'prefix'   => getenv('SQLSERVER_PREFIX'),
 		),
 
 	),
