@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+//Route::get('/', function () {
+//    return View::make('hello');
+//});
+
+/*
+* Home
+*/
+Route::get('/', ['as' => 'dashboard.home', 'uses' => 'HomeController@welcome']);
+
+/*
+ * Auth
+ */
+Route::get('login', ['as' => 'dashboard.login', 'uses' => 'AuthController@getLogin']);
+Route::post('login', ['as' => 'dashboard.login', 'uses' => 'AuthController@postLogin']);
+Route::get('logout', ['as' => 'dashboard.logout', 'uses' => 'AuthController@getLogout']);
