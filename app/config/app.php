@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'rlySFhaj1KZemsFdCSqE7muaezfIxQzY',
+	'key' => getenv('KEY'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -124,6 +124,7 @@ return array(
 
 		// Third party
 		'Cartalyst\Sentry\SentryServiceProvider',
+        'Laracasts\Validation\ValidationServiceProvider',
 
 	),
 

@@ -1,6 +1,7 @@
 <?php
 
-class AuthController extends BaseController {
+class AuthController extends BaseController
+{
 
     /**
      * The layout used by the controller.
@@ -20,6 +21,17 @@ class AuthController extends BaseController {
      * @var LoginForm
      */
     private $loginForm;
+
+    /**
+     * Create a new authentication controller instance.
+     * @param LoginForm $loginForm
+     */
+    public function __construct(LoginForm $loginForm)
+    {
+        $this->loginForm = $loginForm;
+
+        $this->beforeFilter('sentry.guest', ['except' => 'getLogout']);
+    }
 
     /**
      * Show the application login form.
@@ -43,9 +55,15 @@ class AuthController extends BaseController {
         try {
             $credentials = Input::only('email', 'password');
 
+            $remember=(Input::has('remember'))? true : false;
+
             $this->loginForm->validate($credentials);
 
-            Sentry::authenticate($credentials, false);
+//            if ($remember) {
+//                Sentry::authenticateAndRemember($credentials);
+//            } else {
+                Sentry::authenticate($credentials, false);
+//            }
 
             return Redirect::route('dashboard.home')->with('message', sprintf('Welcome back [%s]', Sentry::getUser()->first_name));
         } catch (\Exception $e) {
