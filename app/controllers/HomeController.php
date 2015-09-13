@@ -18,22 +18,7 @@ class HomeController extends BaseController
 
     public function welcome()
     {
-        try {
-            $host = getenv('SQLSERVER_HOST');
-            $port = getenv('SQLSERVER_PORT');
-            $dbname = getenv('SQLSERVER_DB');
-            $user = getenv('SQLSERVER_USER');
-            $pass = getenv('SQLSERVER_PASS');
-
-            $dbh = new PDO ("dblib:host={$host}:{$port};dbname={$dbname}", $user, $pass);
-
-//            DB::connection('dblib');
-        } catch (PDOException $e) {
-            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            exit;
-        }
-
-        return View::make('hello');
+        $this->view('dashboard.index');
     }
 
 }
