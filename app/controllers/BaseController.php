@@ -15,19 +15,6 @@ class BaseController extends Controller {
 	protected $pageTitle;
 
 	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
-	protected function setupLayout()
-	{
-		if ( ! is_null($this->layout))
-		{
-			$this->layout = View::make($this->layout);
-		}
-	}
-
-	/**
 	 * Get the page tile.
 	 *
 	 * @return string
@@ -49,6 +36,30 @@ class BaseController extends Controller {
 
 		return $this;
 	}
+
+    /**
+     * Setup the layout used by the controller.
+     *
+     * @return void
+     */
+    protected function setupLayout()
+    {
+        if (!is_null($this->layout)) {
+
+
+            // Bind title and breadcrumbs to the layout.
+            View::composer($this->layout, function ($view) {
+                $view->with([
+                    'title' => $this->getPageTitle(),
+                    'currentUser' => Sentry::getUser()
+                ]);
+
+            });
+
+
+            $this->layout = View::make($this->layout);
+        }
+    }
 
 	/**
 	 * Creates a view
