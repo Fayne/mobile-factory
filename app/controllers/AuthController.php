@@ -1,5 +1,7 @@
 <?php
 
+use Laracasts\Validation\FormValidationException;
+
 class AuthController extends BaseController
 {
 
@@ -23,12 +25,19 @@ class AuthController extends BaseController
     private $loginForm;
 
     /**
+     * @var RegisterForm
+     */
+    private $registerForm;
+
+    /**
      * Create a new authentication controller instance.
      * @param LoginForm $loginForm
+     * @param RegisterForm $registerForm
      */
-    public function __construct(LoginForm $loginForm)
+    public function __construct(LoginForm $loginForm, RegisterForm $registerForm)
     {
         $this->loginForm = $loginForm;
+        $this->registerForm = $registerForm;
 
         $this->beforeFilter('sentry.guest', ['except' => 'getLogout']);
     }
@@ -42,7 +51,19 @@ class AuthController extends BaseController
     {
         $this->setPageTitle('Login');
 
-        return $this->view('auth.login');
+        $this->view('auth.login');
+    }
+
+    /**
+     * Show the application register form.
+     *
+     * @return Response
+     */
+    public function getRegister()
+    {
+        $this->setPageTitle('Registration');
+
+        $this->view('auth.register');
     }
 
     /**
@@ -55,19 +76,47 @@ class AuthController extends BaseController
         try {
             $credentials = Input::only('email', 'password');
 
-            $remember=(Input::has('remember'))? true : false;
+            $remember = (Input::has('remember')) ? true : false;
 
             $this->loginForm->validate($credentials);
 
-//            if ($remember) {
-//                Sentry::authenticateAndRemember($credentials);
-//            } else {
+            if ($remember) {
+                Sentry::authenticateAndRemember($credentials);
+            } else {
                 Sentry::authenticate($credentials, false);
-//            }
+            }
 
             return Redirect::route('dashboard.home')->with('message', sprintf('Welcome back [%s]', Sentry::getUser()->first_name));
         } catch (\Exception $e) {
             return Redirect::back()->withInput()->withErrors(['email' => 'Wrong email or password',]);
+        }
+    }
+
+    /**
+     * Handle a register request to the application.
+     *
+     * @return Response
+     */
+    public function postRegister()
+    {
+        try {
+            $data = Input::only('first_name', 'last_name', 'email', 'password', 'password_confirmation');
+
+            $this->registerForm->validate($data);
+
+            unset($data['password_confirmation']);
+
+            // TODO: set new user as activity user at the moment
+            $data = array_merge($data, ['activated' => true]);
+
+            // Create the user
+            $user = Sentry::createUser($data);
+
+            return Redirect::route('dashboard.home')->with('message', "[{$user->first_name}], Welcome!!");
+        } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'User already exists.']);
+        } catch (FormValidationException $e) {
+            return Redirect::back()->withInput()->withErrors($e->getErrors());
         }
     }
 

@@ -67,6 +67,7 @@
                     </div>
                     <div class="panel-footer">
                         <div class="clearfix">
+                            {{ link_to_route('dashboard.register', 'Register', $parameters = array(), $attributes = array('class' => 'btn btn-default pull-left')) }}
                             <input type="submit" class="btn btn-primary pull-right"/>
                         </div>
                     </div>
