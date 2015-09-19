@@ -88,3 +88,12 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/**
+ * Custom filter
+ */
+Route::filter('sentry.auth', function()
+{
+    if( !Sentry::check() )
+        return Redirect::route('dashboard.login');
+});
