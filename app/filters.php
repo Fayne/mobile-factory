@@ -97,3 +97,12 @@ Route::filter('sentry.auth', function()
     if( !Sentry::check() )
         return Redirect::route('dashboard.login');
 });
+
+Route::filter('dashboard.nickname', function()
+{
+    $user = Sentry::getUser();
+
+    if( empty($user->nickname) && !$user->isSuperUser() ){
+        return Redirect::route('dashboard.nickname');
+    }
+});
