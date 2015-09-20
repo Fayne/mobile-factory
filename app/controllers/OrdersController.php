@@ -14,7 +14,7 @@ class OrdersController extends BaseController
 
         $order = Order::findByTodayUserId($currentUser->id, date('Y-m-d'));
 
-        if (!count($order)) {
+        if (!count($order) || !$order) {
             $order_code = $this->_generate_order_code();
 
             $order = new Order;
