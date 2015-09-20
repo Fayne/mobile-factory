@@ -19,8 +19,9 @@ class CreateOrdersTable extends Migration {
 			$table->string('order_code', 20)->unique();
 			$table->string('order_desc', 255)->nullable();
 			$table->tinyInteger('order_status')->default(1);
-			$table->integer('product_id');
+			$table->string('product_code', 20);
 			$table->integer('quantity')->nullable();
+            $table->dateTime('required_date');
 			$table->tinyInteger('status')->default(1);
 			$table->timestamps();
 		});
