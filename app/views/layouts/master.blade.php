@@ -2,9 +2,8 @@
 
 <body class="animated-content">
 
-@include('layouts.partials.navbar')
-
 @yield('content')
+
 
 @if (App::environment('local'))
     <script type="text/javascript" src="/src/js/jquery-1.10.2.min.js"></script>
