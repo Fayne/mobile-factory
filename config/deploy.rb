@@ -5,7 +5,7 @@ set :application, 'mobile_factory'
 set :repo_url, 'git@github.com:Fayne/mobile-factory.git'
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/html/mobile_factory'
@@ -40,13 +40,15 @@ namespace :deploy do
   task :move_vendor_and_config do
     on roles(:app), in: :sequence, wait: 1 do
       within release_path do
-        # execute "cp -r #{fetch(:composer_vendor)}/vendor #{fetch(:release_path)}/vendor"
-        # execute "cp #{fetch(:config_dir)}/env.php #{fetch(:release_path)}/.env.#{fetch(:app_environment)}.php"
+        execute "cp -r #{fetch(:composer_vendor)}/vendor #{fetch(:release_path)}/vendor"
+        execute "cp #{fetch(:config_dir)}/env.php #{fetch(:release_path)}/.env.php"
       end
     end
   end
 
-  # after :updated, :move_vendor_and_config
+  after :updated, :move_vendor_and_config
+
+  before "deploy:updated", "deploy:set_permissions:acl"
 
   namespace :ops do
 
@@ -54,8 +56,8 @@ namespace :deploy do
 
       desc 'Upload environment configuration to servers.'
       task :upload_env do
-        on roles(:app) do
-          upload! ".env.#{fetch(:app_environment)}.php", "#{fetch(:deploy_to)}/current/.env.#{fetch(:app_environment)}.php"
+        on roles(:app), in: :sequence, wait: 1 do
+          upload! "./config/env.#{fetch(:app_environment)}.php", "#{fetch(:config_dir)}/env.php"
         end
       end
 
@@ -65,21 +67,35 @@ namespace :deploy do
 
       desc 'Install/Update composer dependencies'
       task :install_no_dev do
-        on roles(:app) do
-          execute "cd #{fetch(:deploy_to)}/current && composer update --no-dev --prefer-dist --no-interaction --optimize-autoloader"
+        on release_roles(:app) do
+          within fetch(:release_path) do
+            execute :composer, 'update --no-dev --prefer-dist --no-interaction --quiet --optimize-autoloader'
+          end
         end
       end
 
       desc 'Copy vendor folder to servers.'
       task :upload_vendor do
         on roles(:app), in: :sequence, wait: 1 do
-          execute 'mkdir', "#{fetch(:composer_vendor)}"
           system("mkdir build && tar -zcf ./build/vendor.tar.gz ./vendor")
-          upload! './build/vendor.tar.gz', "#{fetch(:composer_vendor)}/", :recursive => true
+          upload! './build/vendor.tar.gz', fetch(:composer_vendor), :recursive => true
           execute "cd #{fetch(:composer_vendor)}
           tar -zxf #{fetch(:composer_vendor)}/vendor.tar.gz
           rm #{fetch(:composer_vendor)}/vendor.tar.gz"
           system("rm -rf build")
+        end
+      end
+
+    end
+
+    namespace :dist do
+
+      desc 'Duplicate src folder to dist folder'
+      task :build do
+        on roles(:app), in: :sequence, wait: 1 do
+          within release_path do
+	        execute "cp -r #{fetch(:release_path)}/public/src #{fetch(:release_path)}/public/dist"
+	      end
         end
       end
 

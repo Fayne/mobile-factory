@@ -68,6 +68,13 @@ set :composer_vendor, fetch(:deploy_to) + '/composer'
 
 set :config_dir, fetch(:deploy_to) + '/config'
 
+set :tmp_dir, '/tmp'
+
+set :file_permissions_paths, ['public/uploads', 'app/storage/cache', 'app/storage/logs', 'app/storage/meta', 'app/storage/sessions', 'app/storage/views']
+set :file_permissions_users, ["fayne"]
+set :file_permissions_groups, ["fayne"]
+set :file_permissions_chmod_mode, "0777"
+
 set :app_environment, 'staging'
 
 server '139.196.16.171',
