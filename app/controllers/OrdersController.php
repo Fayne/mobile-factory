@@ -1,20 +1,47 @@
 <?php
 
+use Laracasts\Validation\FormValidationException;
+
 class OrdersController extends BaseController
 {
     /**
-     * Dashboard homepage
-     *
+     * @var SignatureForm
      */
-    public function create()
+    private $signatureForm;
+
+    /**
+     * @param SignatureForm $signatureForm
+     */
+    function __construct(SignatureForm $signatureForm)
     {
-        $this->setPageTitle('Create order');
+        $this->signatureForm = $signatureForm;
+    }
+
+    /**
+     * Enter signature page.
+     */
+    public function enterSignature()
+    {
+        $this->setPageTitle('Input signature');
 
         $currentUser = Sentry::getUser();
 
-        $order = Order::findByTodayUserId($currentUser->id, date('Y-m-d'));
+        $this->view('orders.enter_signature', compact('currentUser'));
+    }
 
-        if (!count($order) || !$order) {
+    /**
+     * Create order.
+     *
+     */
+    public function store()
+    {
+        try {
+            $data = Input::only('signature');
+
+            $this->signatureForm->validate($data);
+
+            $currentUser = Sentry::getUser();
+
             $order_code = $this->_generate_order_code();
 
             $order = new Order;
@@ -28,23 +55,43 @@ class OrdersController extends BaseController
             $order->required_date = date('Y-m-d H:i:s');
             $order->status = 1;
             $order->user_id = $currentUser->id;
+            $order->signature = $data['signature'];
 
             $order->save();
-        }
 
-        $this->view('orders.create', compact('currentUser', 'order'));
+            return Redirect::route('orders.created')->with('order_code', $order_code);
+        } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+            return Redirect::back()->withInput()->withErrors(['nickname' => 'User was not found.']);
+        } catch
+        (FormValidationException $e) {
+            return Redirect::back()->withInput()->withErrors($e->getErrors());
+        }
     }
 
     /**
      * Order created successfully page.
      */
-    public function createdSuccess()
+    public function created()
     {
         $this->setPageTitle('Create order successfully');
 
         $currentUser = Sentry::getUser();
 
-        $this->view('orders.created.success', compact('currentUser'));
+        $this->view('orders.created', compact('currentUser'));
+    }
+
+    /**
+     * My orders page.
+     */
+    public function myOrders()
+    {
+        $this->setPageTitle('My orders');
+
+        $currentUser = Sentry::getUser();
+
+        $orders = Order::findByUserId($currentUser->id);
+
+        $this->view('orders.my_orders', compact('currentUser', 'orders'));
     }
 
     /**
@@ -56,4 +103,6 @@ class OrdersController extends BaseController
     {
         return date('Ymd') . mt_rand(100, 999);
     }
+
+
 }

@@ -33,12 +33,14 @@ class Order extends Model
      * Find orders by user_id.
      *
      * @param string $userId
+     *
+     * @return bool | array
      */
-    public static function findByUserIdOrFail($userId)
+    public static function findByUserId($userId)
     {
         if (!is_null($model = static::where('user_id', $userId)->get())) return $model;
 
-        throw (new \Illuminate\Database\Eloquent\ModelNotFoundException)->setModel(get_called_class());
+        return false;
     }
 
     /**

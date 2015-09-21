@@ -14,7 +14,7 @@
 /*
 * Home
 */
-Route::get('/', ['as' => 'dashboard.home', 'before' => 'sentry.auth|dashboard.nickname', 'uses' => 'HomeController@index']);
+Route::get('/', ['as' => 'dashboard.home', 'before' => 'sentry.auth', 'uses' => 'HomeController@index']);
 
 /*
  * Auth
@@ -31,20 +31,22 @@ Route::get('logout', ['as' => 'dashboard.logout', 'uses' => 'AuthController@getL
 Route::group(['prefix' => 'dashboard', 'before' => 'sentry.auth'], function()
 {
 
-    /*
-     * Nickname
-     */
-    Route::get('nickname', ['as' => 'dashboard.nickname', 'uses' => 'DashboardController@getNickname']);
-    Route::post('nickname', ['as' => 'dashboard.nickname', 'uses' => 'DashboardController@storeNickname']);
+
 
 });
 
 /*
  * Orders
  */
-Route::group(['prefix' => 'orders', 'before' => 'sentry.auth|dashboard.nickname'], function()
+Route::group(['prefix' => 'orders', 'before' => 'sentry.auth'], function()
 {
-    Route::get('create', ['as' => 'orders.create', 'uses' => 'OrdersController@create']);
-    Route::get('create/success', ['as' => 'orders.created.success', 'uses' => 'OrdersController@createdSuccess']);
+    /*
+     * Signature
+     */
+    Route::get('create/signature', ['as' => 'orders.create.signature', 'uses' => 'OrdersController@enterSignature']);
+    Route::post('create', ['as' => 'orders.create', 'uses' => 'OrdersController@store']);
+
+    Route::get('created', ['as' => 'orders.created', 'uses' => 'OrdersController@created']);
+    Route::get('/', ['as' => 'orders.my_orders', 'uses' => 'OrdersController@myOrders']);
 
 });

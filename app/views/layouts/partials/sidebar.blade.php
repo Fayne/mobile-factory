@@ -22,7 +22,26 @@
                 <nav role="navigation" class="widget-body">
                     <ul class="acc-menu">
                         <li class="nav-separator"><span>Explore</span></li>
-                        <li><a href="{{ route('dashboard.home') }}"><i class="ti ti-home"></i><span>Dashboard</span></a>
+                        <li>
+                            <a href="{{ route('dashboard.home') }}"><i class="ti ti-home"></i><span>Dashboard</span></a>
+                        </li>
+                        <li class="hasChild"><a href="javascript:;"><i class="ti ti-shopping-cart"></i><span>Orders</span></a>
+                            <ul class="acc-menu">
+                                <li><a href="{{ route('orders.my_orders') }}">My orders</a></li>
+                                <li><a href="{{ route('orders.create.signature') }}">Create new order</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ route('dashboard.home') }}"><i class="ti ti-package"></i><span>库存</span></a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dashboard.home') }}"><i class="ti ti-cup"></i><span>绩效</span></a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dashboard.home') }}"><i class="ti ti-bar-chart-alt"></i><span>质量</span></a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dashboard.home') }}"><i class="ti ti-agenda"></i><span>设备</span></a>
                         </li>
                     </ul>
                 </nav>
