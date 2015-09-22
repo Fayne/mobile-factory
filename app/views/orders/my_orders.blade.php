@@ -30,26 +30,18 @@
                                         <table class="table">
                                             <thead>
                                             <tr>
-                                                <th>Order name</th>
                                                 <th>Order code</th>
                                                 <th>Signature</th>
-                                                <th>Order description</th>
-                                                <th>Product code</th>
                                                 <th>Required Date</th>
-                                                <th>Quantity</th>
                                                 <th>Status</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($orders as $order)
                                                 <tr>
-                                                    <td>{{ $order->order_name }}</td>
                                                     <td>{{ $order->order_code }}</td>
                                                     <td>{{ $order->signature }}</td>
-                                                    <td>{{ $order->order_desc }}</td>
-                                                    <td>{{ $order->product_code }}</td>
                                                     <td>{{ $order->required_date }}</td>
-                                                    <td>{{ $order->quantity }}</td>
                                                     <td>{{ $order->status }}</td>
                                                 </tr>
                                             @endforeach
