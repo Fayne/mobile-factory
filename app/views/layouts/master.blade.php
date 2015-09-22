@@ -1,9 +1,18 @@
 @include('layouts.partials.head')
 
 <body class="animated-content">
+@include('layouts.partials.navbar')
+<div id="wrapper">
+    <div id="layout-static">
+        @include('layouts.partials.sidebar')
+        <div class="static-content-wrapper">
+            @yield('content')
 
-@yield('content')
-
+            @include('layouts.partials.foot')
+        </div>
+    </div>
+    @include('layouts.partials.options')
+</div>
 
 @if (App::environment('local'))
     <script type="text/javascript" src="/src/js/jquery-1.10.2.min.js"></script>
