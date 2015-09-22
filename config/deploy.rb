@@ -41,7 +41,8 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 1 do
       within release_path do
         execute "cp -r #{fetch(:composer_vendor)}/vendor #{fetch(:release_path)}/vendor"
-        execute "cp #{fetch(:config_dir)}/env.php #{fetch(:release_path)}/.env.php"
+        execute "cp #{fetch(:config_dir)}/env.php #{fetch(:release_path)}/.env.#{fetch(:app_environment)}.php"
+        execute "cp -r #{fetch(:release_path)}/public/src #{fetch(:release_path)}/public/dist"
       end
     end
   end
@@ -83,19 +84,6 @@ namespace :deploy do
           tar -zxf #{fetch(:composer_vendor)}/vendor.tar.gz
           rm #{fetch(:composer_vendor)}/vendor.tar.gz"
           system("rm -rf build")
-        end
-      end
-
-    end
-
-    namespace :dist do
-
-      desc 'Duplicate src folder to dist folder'
-      task :build do
-        on roles(:app), in: :sequence, wait: 1 do
-          within release_path do
-	        execute "cp -r #{fetch(:release_path)}/public/src #{fetch(:release_path)}/public/dist"
-	      end
         end
       end
 
