@@ -38,7 +38,7 @@ class Order extends Model
      */
     public static function findByUserId($userId)
     {
-        if (!is_null($model = static::where('user_id', $userId)->get())) return $model;
+        if (!is_null($model = static::where('user_id', $userId)->orderBy('order_id', 'desc')->get())) return $model;
 
         return false;
     }

@@ -42,7 +42,74 @@
                                                     <td>{{ $order->order_code }}</td>
                                                     <td>{{ $order->signature }}</td>
                                                     <td>{{ $order->required_date }}</td>
-                                                    <td>{{ $order->status }}</td>
+                                                    <td>
+                                                        <a data-toggle="modal" href="#orderDetail{{ $order->order_code }}" class="btn btn-primary">Detail</a>
+                                                        <div class="modal fade" id="orderDetail{{ $order->order_code }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                        <h2 class="modal-title">Detail</h2>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <ul class="mini-timeline">
+                                                                            <li class="mini-timeline-lime">
+                                                                                <div class="timeline-icon"></div>
+                                                                                <div class="timeline-body">
+                                                                                    <div class="timeline-content">
+                                                                                        <a href="#/" class="name">Vincent Keller</a> added new task
+                                                                                        <span class="time">4 mins ago</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <li class="mini-timeline-deeporange">
+                                                                                <div class="timeline-icon"></div>
+                                                                                <div class="timeline-body">
+                                                                                    <div class="timeline-content">
+                                                                                        <a href="#/" class="name">Shawna Owen</a> added <a href="#/" class="name">Alonzo Keller</a>
+                                                                                        <span class="time">6 mins ago</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <li class="mini-timeline-info">
+                                                                                <div class="timeline-icon"></div>
+                                                                                <div class="timeline-body">
+                                                                                    <div class="timeline-content">
+                                                                                        <a href="#/" class="name">Christian Delgado</a> commented on thread
+                                                                                        <span class="time">12 mins ago</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+
+                                                                            <li class="mini-timeline-indigo">
+                                                                                <div class="timeline-icon"></div>
+                                                                                <div class="timeline-body">
+                                                                                    <div class="timeline-content">
+                                                                                        <a href="#/" class="name">Jonathan Smith</a> added <a href="#/" class="name">Frend Pratt</a>
+                                                                                        <span class="time">6 hours ago</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li class="mini-timeline-lime">
+                                                                                <div class="timeline-icon"></div>
+                                                                                <div class="timeline-body">
+                                                                                    <div class="timeline-content">
+                                                                                        <a href="#/" class="name">Vincent Keller</a> added new task
+                                                                                        <span class="time">4 mins ago</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div><!-- /.modal-content -->
+                                                            </div><!-- /.modal-dialog -->
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
