@@ -72,7 +72,7 @@
     <!-- Moment.js Dependency -->
     <script type="text/javascript" src="/src/plugins/fullcalendar/fullcalendar.min.js"></script>
     <!-- Calendar Plugin -->
-    <script type="text/javascript" src="/src/demo/demo-index.js"></script>
+    {{--<script type="text/javascript" src="/src/demo/demo-index.js"></script>--}}
     <!-- Initialize scripts for this page-->
     <!-- End loading page level scripts-->
 @else
@@ -105,7 +105,7 @@
     <script type="text/javascript" src="/dist/plugins/easypiechart/jquery.easypiechart.js"></script>
     <script type="text/javascript" src="/dist/plugins/fullcalendar/moment.min.js"></script>
     <script type="text/javascript" src="/dist/plugins/fullcalendar/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="/dist/demo/demo-index.js"></script>
+    {{--<script type="text/javascript" src="/dist/demo/demo-index.js"></script>--}}
 @endif
 </body>
 </html>
