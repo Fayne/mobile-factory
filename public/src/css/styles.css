@@ -13299,6 +13299,9 @@ body.topnav-collapsed header.navbar.navbar-default .navbar-collapse .open .tt-dr
 .alert > h6 {
   margin-top: 0 !important;
 }
+.alert img{
+    max-width: 100%;
+}
 .alert-inverse {
   color: #9e9e9e;
   background-color: #e0e0e0;

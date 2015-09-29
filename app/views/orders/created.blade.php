@@ -31,6 +31,9 @@
                                             <p>Your order number is :
                                                 <strong>{{ Session::get('order_code') }}</strong></p>
                                             <br>
+                                            <p>
+                                                <img src="/src/img/T1A2bTBsWb1RCvBVdK.jpg" alt="" />
+                                            </p>
                                         </div>
 
                                     </div>

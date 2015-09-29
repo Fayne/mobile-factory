@@ -8,6 +8,9 @@ class HomeController extends BaseController
      */
     public function index()
     {
+        // Disable dashboard home page at the moment
+        return Redirect::route('orders.my_orders');
+
         $this->setPageTitle('Homepage');
 
         $currentUser = Sentry::getUser();

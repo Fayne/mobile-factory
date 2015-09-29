@@ -3,7 +3,7 @@
 @section('content')
     <div id='container'>
         <div id="www">
-            <a href="{{ route('dashboard.home') }}">移动工厂</a>
+            <a href="{{ route('orders.my_orders') }}">移动工厂</a>
         </div>
 
         <svg id='svgBack' xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">

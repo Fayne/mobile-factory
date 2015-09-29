@@ -86,7 +86,7 @@ class AuthController extends BaseController
                 Sentry::authenticate($credentials, false);
             }
 
-            return Redirect::route('dashboard.home')->with('message', sprintf('Welcome back [%s]', Sentry::getUser()->first_name));
+            return Redirect::route('orders.my_orders')->with('message', sprintf('Welcome back [%s]', Sentry::getUser()->first_name));
         } catch (\Exception $e) {
             return Redirect::back()->withInput()->withErrors(['email' => 'Wrong email or password',]);
         }
@@ -112,7 +112,7 @@ class AuthController extends BaseController
             // Create the user
             $user = Sentry::createUser($data);
 
-            return Redirect::route('dashboard.home')->with('message', "[{$user->first_name}], Welcome!!");
+            return Redirect::route('orders.my_orders')->with('message', "[{$user->first_name}], Welcome!!");
         } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
             return Redirect::back()->withInput()->withErrors(['email' => 'User already exists.']);
         } catch (FormValidationException $e) {

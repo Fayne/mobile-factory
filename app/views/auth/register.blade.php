@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container" id="registration-form">
-        <a href="{{ route('dashboard.home') }}" class="login-logo">
+        <a href="{{ route('orders.my_orders') }}" class="login-logo">
             @if (App::environment('local'))
                 <img src="/src/img/logo-big.png">
             @else

@@ -12,8 +12,8 @@
             </a>
 		</span>
 
-        <a class="navbar-brand" href="{{ route('dashboard.home') }}">
-            <移动工厂></移动工厂>
+        <a class="navbar-brand" href="{{ route('orders.my_orders') }}">
+            移动工厂
         </a>
 
     </div>
