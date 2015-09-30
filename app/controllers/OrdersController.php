@@ -91,8 +91,8 @@ class OrdersController extends BaseController
 
         $orders = Order::findByUserId($currentUser->id);
 
-        if (!$orders) {
-            return Redirect::route('orders.enterSignature')->with('message', 'Create your first order.');
+        if (!$orders || !count($orders)) {
+            return Redirect::route('orders.create.signature')->with('message', 'Create your first order.');
         }
 
         $this->view('orders.my_orders', compact('currentUser', 'orders'));
