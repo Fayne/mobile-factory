@@ -11,7 +11,6 @@
             @include('layouts.partials.foot')
         </div>
     </div>
-    @include('layouts.partials.options')
 </div>
 
 @if (App::environment('local'))
