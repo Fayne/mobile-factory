@@ -87,8 +87,23 @@ class AuthController extends BaseController
             }
 
             return Redirect::route('orders.my_orders')->with('message', sprintf('Welcome back [%s]', Sentry::getUser()->first_name));
+        } catch (Cartalyst\Sentry\Users\LoginRequiredException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'Login field is required',]);
+        } catch (Cartalyst\Sentry\Users\PasswordRequiredException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'Password field is required',]);
+        } catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'Wrong password, try again',]);
+        } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'User was not found',]);
+        } catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'User is not activated',]);
+        } // The following is only required if the throttling is enabled
+        catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'User is suspended',]);
+        } catch (Cartalyst\Sentry\Throttling\UserBannedException $e) {
+            return Redirect::back()->withInput()->withErrors(['email' => 'User is banned',]);
         } catch (\Exception $e) {
-            return Redirect::back()->withInput()->withErrors(['email' => 'Wrong email or password',]);
+            return Redirect::back()->withInput()->withErrors(['email' => 'Wrong email or password...',]);
         }
     }
 
