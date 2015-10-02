@@ -3,9 +3,8 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Cartalyst\Sentry\Users\UserNotFoundException;
 
-class CreateSuperAdminCommand extends Command
+class UpdateUserPasswordCommand extends Command
 {
 
     /**
@@ -13,14 +12,14 @@ class CreateSuperAdminCommand extends Command
      *
      * @var string
      */
-    protected $name = 'fayne:create-superadmin';
+    protected $name = 'fayne:update-password';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'You can run this command to create a super admin user.';
+    protected $description = 'You can run this command to update user password.';
 
     /**
      * Create a new command instance.
@@ -40,9 +39,9 @@ class CreateSuperAdminCommand extends Command
     public function fire()
     {
         try {
-            $this->installMigrations();
 
-            $this->createSuperUser();
+            $this->updatePassword();
+
         } catch (Exception $e) {
 
             $this->error($e->getMessage());
@@ -56,7 +55,7 @@ class CreateSuperAdminCommand extends Command
      */
     protected function getArguments()
     {
-        return array(// array('example', InputArgument::REQUIRED, 'An example argument.'),
+        return array(//			array('example', InputArgument::REQUIRED, 'An example argument.'),
         );
     }
 
@@ -67,33 +66,30 @@ class CreateSuperAdminCommand extends Command
      */
     protected function getOptions()
     {
-        return array(// array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+        return array(//			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
         );
     }
 
     /**
-     * Create the dashboard superuser.
+     * Update password.
      *
      * @return void
      */
-    private function createSuperUser()
+    private function updatePassword()
     {
 
-        $firstName = $this->ask('What is your first name? ');
-        $email = $this->ask('What is your email address? ');
-        $password = $this->secret('What is the password? ');
+        $email = $this->ask('What is the email address of the user you want to update password? ');
+        $password = $this->secret('What is new password? ');
         $passwordConfirmation = $this->secret('Please input the password again. ');
 
         $validator = Validator::make(
             array(
-                'first_name' => $firstName,
                 'password' => $password,
                 'email' => $email
             ),
             array(
-                'first_name' => 'required',
                 'password' => 'required',
-                'email' => 'required|email|unique:users'
+                'email' => 'required|email'
             )
         );
 
@@ -109,26 +105,20 @@ class CreateSuperAdminCommand extends Command
             return;
         }
 
-        Sentry::createUser(array(
-            'email' => $email,
-            'first_name' => $firstName,
-            'password' => $password . "",
-            'activated' => true,
-            'permissions' => ['superuser' => true],
-        ));
+        try
+        {
+            $user = Sentry::findUserByLogin($email);
+            $user->password = (string)$password;
 
-        $this->info('The super admin `' . $firstName . '` has been created.');
-    }
+            $user->save();
+            $this->info('Password has been reset.');
 
-    /**
-     * Install the dashboard migrations.
-     *
-     * @return void
-     */
-    protected function installMigrations()
-    {
-        $this->info('We are about to install migrations');
-        $this->call('migrate', array('--force' => true, '--package' => 'cartalyst/sentry'));
+        }
+        catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+        {
+            $this->error('User was not found.');
+        }
+
     }
 
 }

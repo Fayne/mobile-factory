@@ -12,3 +12,4 @@
 */
 
 Artisan::add(new CreateSuperAdminCommand);
+Artisan::add(new UpdateUserPasswordCommand);
