@@ -10,6 +10,6 @@ class SignatureForm extends FormValidator {
      * @var array
      */
     protected $rules = [
-        'signature' => 'required|min:10',
+        'signature' => 'required|between:2,10',
     ];
 } 
