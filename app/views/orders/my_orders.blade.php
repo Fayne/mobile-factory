@@ -20,7 +20,7 @@
                                      data-widget-static=""
                                      style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
                                     <div class="panel-heading">
-                                        <h2>{{ $order->order_code }}</h2>
+                                        <h2>Created at <i>{{ date('Y-m-d', strtotime($order->created_at)) }}</i></h2>
 
                                         <div class="panel-ctrls" data-actions-container=""
                                              data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}">
