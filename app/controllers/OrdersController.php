@@ -89,9 +89,9 @@ class OrdersController extends BaseController
 
         $currentUser = Sentry::getUser();
 
-        $orders = Order::findByUserId($currentUser->id);
+        $orders = Order::findByUserId($currentUser->id)->paginate(5);
 
-        if (!$orders || !count($orders)) {
+        if (!count($orders)) {
             return Redirect::route('orders.create.signature')->with('message', 'Create your first order.');
         }
 

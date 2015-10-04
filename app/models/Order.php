@@ -38,23 +38,7 @@ class Order extends Model
      */
     public static function findByUserId($userId)
     {
-        if (!is_null($model = static::where('user_id', $userId)->orderBy('order_id', 'desc')->get())) return $model;
-
-        return false;
-    }
-
-    /**
-     * Find orders by user_id which created at $date.
-     *
-     * @param string $userId
-     * @param $date
-     * @return bool | result
-     */
-    public static function findByTodayUserId($userId, $date)
-    {
-        if (!is_null($model = static::where(['user_id' => $userId, 'required_date' => $date])->first())) return $model;
-
-        return false;
+        return static::where('user_id', $userId)->orderBy('order_id', 'desc');
     }
 
     /**

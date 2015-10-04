@@ -75,6 +75,8 @@
                     </div>
                 </div>
 
+                <?php echo $orders->links(); ?>
+
             </div>
             <!-- .container-fluid -->
         </div>
@@ -171,5 +173,6 @@
             <!-- /.modal-dialog -->
         </div>
     @endforeach
+
 
 @stop
