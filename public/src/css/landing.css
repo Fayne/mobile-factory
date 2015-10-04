@@ -1,53 +1,203 @@
-body{background-color:#444; overflow:hidden;}
+@import url(http://fonts.useso.com/css?family=Quicksand|Lusitana);
 
-svg{ position:absolute; }
-
-#container{
-    width:300px; height:300px;
-    position:absolute;
-    left:50%; top:40%;
-    transform:translate(-50% , -50%);
-}
-.dot{
-    border-radius:50%;
-    position:absolute;
-    height:10px; width:10px;
-
+html, body {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    background: url(../img/bg/wood-background.png) scroll no-repeat center center transparent;
+    max-width: 1080px;
 }
 
-#www{
-    width: 300px;
+#nav {
+    list-style-type: none;
     text-align: center;
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 30px;
+    padding: 0;
 }
 
-#www, #www a, #www a:hover, #www a:active, #www a:focus{
-    font-family:tahoma;
-    font-size:36px;
-    color:#ddd;
-    position:absolute;
-    left:50%; bottom:-40px;
-    transform:translate(-50% , 0%);
+h1 {
+    color: #E6DBAE;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2em;
+    margin: 30px auto 0;
+    padding: 0;
+    letter-spacing: 30px;
+    text-transform: uppercase;
+}
+
+a {
+    color: #ee0088;
+    font-family: 'Lusitana', serif;
+    font-size: 1.5em;
     text-decoration: none;
+    border-bottom: 3px solid #ee0088;
+    display: inline;
+    margin-left: 6%;
+    margin-right: 6%;
+    cursor: pointer;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
 }
 
-
-#www::before{
-    content:'';
-    width:180px; height:15px;
-    border-radius:50%;
-    position:absolute;
-    left:50%; top:62px;
-    transform:translate(-50% , 0%);
-    background-color:#353535;
-    z-index:-1;
+li {
+    width: 33.3%;
+    text-align: center;
+    float: left;
 }
 
+a:hover {
+    border-bottom: 1px solid #FFBDBE;
+}
 
+#headContain {
+    width: 100%;
+    min-height: 24px;
+    text-align: center;
+    margin-top: 5%;
+    background-color: rgba(100,100,100,0.5);
+}
 
+.mission {
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
 
-.link{
-    position:absolute;
-    bottom:15px;right:20px;
-    color:white; font-size:2.4em;
-    text-decoration: none;
+span {
+    font-size: 0.9em;
+}
+
+.mission {
+    -webkit-animation: MISSION-HOVER 5s infinite;
+    -moz-animation: MISSION-HOVER 5s infinite;
+    -o-animation: MISSION-HOVER 5s infinite;
+    animation: MISSION-HOVER 5s infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+}
+
+@-webkit-keyframes MISSION-HOVER {
+    0%, 100% {
+        font-size: 1em;
+        color: white;
+    }
+    50% {
+        color: #BFFCFF;
+        letter-spacing: 1px;
+        text-shadow: 0px 0px 3px rgba(191, 252, 255, 1);
+    }
+}
+
+.content {
+    position: absolute;
+    left: 19%;
+    color: #ee0088;
+    font-size: 18px;
+    text-align: center;
+    width: 65%;
+    margin: 0 auto;
+    margin-top: 60px;
+    font-family: 'Quicksand', sans-serif;
+    opacity: 0;
+
+    -webkit-transition: all 1s linear;
+    -ms-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+
+.content:target {
+    opacity: 1;
+    -webkit-transition: all 1s linear;
+    -ms-transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    transition: all 1s linear;
+}
+@media (min-width: 992px) {
+    .mission {
+        font-size: 2em;
+    }
+    span{
+        font-size: 1.1em;
+    }
+    @-webkit-keyframes MISSION-HOVER {
+        0%, 100% {
+            font-size: 2.1em;
+            color: white;
+        }
+        50% {
+            color: #BFFCFF;
+            letter-spacing: 6px;
+            text-shadow: 0px 0px 15px rgba(191, 252, 255, 1);
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .mission {
+        font-size: 1.5em;
+    }
+    span{
+        font-size: 1.1em;
+    }
+    @-webkit-keyframes MISSION-HOVER {
+        0%, 100% {
+            font-size: 1.7em;
+            color: white;
+        }
+        50% {
+            color: #BFFCFF;
+            letter-spacing: 2px;
+            text-shadow: 0px 0px 15px rgba(191, 252, 255, 1);
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .mission {
+        font-size: 1em;
+    }
+    span{
+        font-size: 1.1em;
+    }
+    @-webkit-keyframes MISSION-HOVER {
+        0%, 100% {
+            font-size: 1.1em;
+            color: white;
+        }
+        50% {
+            color: #BFFCFF;
+            letter-spacing: 2px;
+            text-shadow: 0px 0px 15px rgba(191, 252, 255, 1);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .mission {
+        font-size: 0.8em;
+    }
+    span{
+        font-size: 0.9em;
+    }
+    @-webkit-keyframes MISSION-HOVER {
+        0%, 100% {
+            font-size: 1em;
+            color: white;
+        }
+        50% {
+            color: #BFFCFF;
+            letter-spacing: 1px;
+            text-shadow: 0px 0px 3px rgba(191, 252, 255, 1);
+        }
+    }
 }

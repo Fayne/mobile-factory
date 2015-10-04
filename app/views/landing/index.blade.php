@@ -1,37 +1,30 @@
 @extends('layouts.minimal')
 
 @section('content')
-    <div id='container'>
-        <div id="www">
-            <a href="{{ route('orders.my_orders') }}">移动工厂</a>
+
+
+    <div id='headContain'>
+        <div class='mission'>
+            <span>F</span>ANUC ROBOT & ROCKWELL AUTOMATIO<span>N</span>
         </div>
-
-        <svg id='svgBack' xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
-            <g class='Capsule CG'>
-                <ellipse fill="#222" cx="147.806" cy="107.935" rx="6.944" ry="46.726"/>
-                <path fill="#00A072" d="M224.964 61.184h-77.16c4.434 6.882 5.518 22.14 5.518 39.87v13.738c0 17.73-1.085 32.987-5.517 39.87h77.16c25.812 0 46.738-20.927 46.738-46.74 0-25.813-20.925-46.738-46.74-46.738z"/>
-            </g>
-        </svg>
-
-
-        <svg id='mySVG' xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
-
-            <g class='Capsule CG'>
-                <ellipse fill="none" cx="147.806" cy="107.935" rx="6.944" ry="46.726"/>
-                <path fill="#00A072" d="M224.964 61.184h-77.16c4.434 6.882 5.518 22.14 5.518 39.87v13.738c0 17.73-1.085 32.987-5.517 39.87h77.16c25.812 0 46.738-20.927 46.738-46.74 0-25.813-20.925-46.738-46.74-46.738z"/>
-                <path opacity=".3" fill="#F1F2F2" d="M227.272 154.603c22.127-1.08 40.925-18.23 43.98-40.242-8.65 9.954-21.245 11.063-33.442 11.063-12.537 0-83.952-.717-84.875 0-.697 9.54.198 20.968-5.13 29.24 25.742-.002 53.758 1.19 79.467-.06.258-.013-.764.037 0 0z"/>
-                <path opacity=".7" fill="#FFF" d="M222.35 66.955h-70.817c.717 1.97.89 4.195 1.468 6.64h74.644c10.58 0 20.386 3.295 28.466 8.902-8.492-9.568-20.472-15.542-33.76-15.542z"/>
-                <text x="183" y="110" font-size="16px"  font-family="sans-serif" font-weight="700" opacity='0.9' fill='#fff'>Factory</text>
-            </g>
-            <g class='Capsule CW'>
-                <path fill="#D1D3D4" d="M27.36 107.922c0 25.813 20.927 46.74 46.74 46.74h75.706c4.433-6.883 7.517-22.14 7.517-39.87v-13.74c0-17.73-3.085-32.986-7.517-39.868H74.1c-25.814 0-46.74 20.925-46.74 46.738z"/>
-                <path opacity=".3" fill="#F1F2F2" d="M53.925 125.422c-10.014 0-19.788-2.82-26.113-11.062 2.93 14.647 10.574 27.31 23.896 34.595 9.728 5.322 19.933 5.706 30.696 5.706h66.646c5.683 0 7.607-25.44 7.884-29.238H53.924z"/>
-                <path opacity=".7" fill="#FFF" d="M152.532 66.955h-75.82c-13.287 0-25.266 5.974-33.757 15.542 8.08-5.607 17.886-8.902 28.466-8.902h83.06c-.578-2.445-1.23-4.67-1.948-6.64z"/>
-                <text x="58" y="110" font-size="16px" font-family="sans-serif" opacity='0.6'>Mobile</text>
-            </g>
-        </svg>
-
+        <h1>移动工厂</h1>
     </div>
 
-    <a class='link' href="https://twitter.com/Diaco_ml" target="_top"><span class='fa fa-twitter'></span></a>
+    <ul id='nav'>
+        <li><a href='#one'>关于我们</a></li>
+        <li><a href='#two'>为什么</a></li>
+        <li><a href='{{ route('dashboard.login') }}'>进入</a></li>
+    </ul>
+
+    <div class='content' id='one'>
+        Because FANUC ROBOT & ROCKWELL AUTOMATION ...
+    </div>
+
+    <div class='content' id='two'>
+        Mobile factory is fantastic.
+    </div>
+
+    <div class='content' id='three'>
+
+    </div>
 @stop
