@@ -17,6 +17,11 @@ class LandingController extends BaseController
     {
         $this->setPageTitle('Landing Page');
 
+        if ( Sentry::check())
+        {
+            return Redirect::route('orders.my_orders');
+        }
+
         $this->view('landing.index');
     }
 }

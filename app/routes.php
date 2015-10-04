@@ -14,12 +14,12 @@
 /*
  * Landing
  */
-Route::get('landing', ['as' => 'web.landing', 'uses' => 'LandingController@index']);
+Route::get('/', ['as' => 'web.landing', 'uses' => 'LandingController@index']);
 
 /*
 * Home
 */
-Route::get('/', ['as' => 'dashboard.home', 'before' => 'sentry.auth', 'uses' => 'HomeController@index']);
+Route::get('/home', ['as' => 'dashboard.home', 'before' => 'sentry.auth', 'uses' => 'HomeController@index']);
 
 /*
  * Auth
