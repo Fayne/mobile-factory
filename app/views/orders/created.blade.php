@@ -32,7 +32,7 @@
                                                 <strong>{{ Session::get('order_code') }}</strong></p>
                                             <br>
                                             <p>
-                                                <img src="/src/img/T1A2bTBsWb1RCvBVdK.jpg" alt="" />
+                                                <img src="/src/img/Robot_example.png" alt="" />
                                             </p>
                                         </div>
 
