@@ -12,8 +12,8 @@
 
     <ul id='nav'>
         <li><a href='#one'>关于我们</a></li>
-        <li><a href='#two'>为什么</a></li>
-        <li><a href='{{ route('dashboard.login') }}'>进入</a></li>
+        <li><a href='#two'>移动优势</a></li>
+        <li><a href='{{ route('dashboard.login') }}'>进入后台</a></li>
     </ul>
 
     <div class='content' id='one'>
