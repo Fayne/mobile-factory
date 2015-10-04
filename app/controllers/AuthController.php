@@ -127,7 +127,7 @@ class AuthController extends BaseController
             // Create the user
             $user = Sentry::createUser($data);
 
-            return Redirect::route('orders.my_orders')->with('message', "[{$user->first_name}], Welcome!!");
+            return Redirect::route('dashboard.login')->with('message', "Congratulations <i>{$user->first_name}</i>, you have registered successfully!!");
         } catch (Cartalyst\Sentry\Users\UserExistsException $e) {
             return Redirect::back()->withInput()->withErrors(['email' => 'User already exists.']);
         } catch (FormValidationException $e) {
