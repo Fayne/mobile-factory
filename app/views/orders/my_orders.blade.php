@@ -2,6 +2,12 @@
 
 @section('content')
 
+    @if (App::environment('local'))
+        <link type="text/css" href="/src/css/progress.css" rel="stylesheet">
+    @else
+        <link type="text/css" href="/dist/css/progress.css" rel="stylesheet">
+    @endif
+
     <div class="static-content">
         <div class="page-content">
             <ol class="breadcrumb">
@@ -45,9 +51,9 @@
                                                 <tr>
                                                     <th>Progress</th>
                                                     <td style="vertical-align: middle;">
-                                                        <div class="progress" style="margin-bottom: 0;">
-                                                            <div class="progress-bar progress-bar-success"
-                                                                 style="width: {{ mt_rand(30, 50) }}%"></div>
+                                                        <div class="progressbar" data-perc="{{ mt_rand(20, 80) }}">
+                                                            <div class="bar"><span></span></div>
+                                                            <div class="label"><span></span></div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -82,15 +88,15 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close"
-                                data-dismiss="modal" aria-hidden="true">
-                            ×
-                        </button>
+                        {{--<button type="button" class="close"--}}
+                                {{--data-dismiss="modal" aria-hidden="true">--}}
+                            {{--×--}}
+                        {{--</button>--}}
                         <h2 class="modal-title">Detail</h2>
 
-                        <div class="progress">
-                            <div class="progress-bar progress-bar-success" style="width: {{ mt_rand(30, 50) }}%"></div>
-                        </div>
+                        {{--<div class="progress">--}}
+                            {{--<div class="progress-bar progress-bar-success" style="width: {{ mt_rand(30, 50) }}%"></div>--}}
+                        {{--</div>--}}
                     </div>
                     <div class="modal-body">
                         <ul class="mini-timeline">
