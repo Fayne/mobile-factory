@@ -1,6 +1,6 @@
 @include('layouts.partials.head')
 
-<body class="animated-content">
+<body class="animated-content sidebar-collapsed">
 @include('layouts.partials.navbar')
 <div id="wrapper">
     <div id="layout-static">
