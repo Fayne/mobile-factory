@@ -15,7 +15,7 @@ class CreateOrderTrackTable extends Migration {
 		Schema::create('order_tracks', function(Blueprint $table)
 		{
             $table->increments('order_track_id');
-            $table->string('order_track_name', 20);
+            $table->string('order_track_name', 100);
             $table->integer('order_id');
             $table->integer('finished_qty')->default(0);
             $table->tinyInteger('order_status')->default(1);
