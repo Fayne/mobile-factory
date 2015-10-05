@@ -5,26 +5,30 @@
 
     <div id='headContain'>
         <div class='mission'>
-            <span>F</span>ANUC ROBOT & ROCKWELL AUTOMATIO<span>N</span>
+            欢迎光临上海2015工博会
         </div>
-        <h1>移动工厂</h1>
+        <h1>Fanuc展台</h1>
     </div>
 
     <ul id='nav'>
-        <li><a href='#one'>关于我们</a></li>
-        <li><a href='#two'>移动优势</a></li>
         <li><a href='{{ route('dashboard.login') }}'>进入后台</a></li>
     </ul>
 
-    <div class='content' id='one'>
-        Because FANUC ROBOT & ROCKWELL AUTOMATION ...
-    </div>
-
-    <div class='content' id='two'>
-        Mobile factory is fantastic.
-    </div>
 
     <div class='content' id='three'>
 
+    </div>
+    
+    <div class="bottom logo_container">
+        <div>
+            <a href="http://www.shanghai-fanuc.com.cn/" target="_blank">
+                <img src="/src/img/Fanuc_Robot.png" alt="Fanuc">
+            </a>
+        </div>
+        <div>
+            <a href="http://www.rockwellautomation.com/" target="_blank">
+                <img src="/src/img/Rockwell.png" alt="Rockwell">
+            </a>
+        </div>
     </div>
 @stop
