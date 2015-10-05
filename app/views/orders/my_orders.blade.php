@@ -55,7 +55,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Progress</th>
-                                                    <td style="vertical-align: middle;">
+                                                    <td style="vertical-align: middle; padding-right: 30px;">
                                                         <div class="progressbar" data-perc="{{ $order->progress }}">
                                                             <div class="bar"><span></span></div>
                                                             <div class="label"><span></span></div>
