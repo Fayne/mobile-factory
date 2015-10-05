@@ -22,6 +22,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             @foreach($orders as $order)
+
+                                <?php
+                                $orderTracks = OrderTrack::findByOrderId($order->order_id);
+                                ?>
+
                                 <div class="panel panel-sky" data-widget="{&quot;draggable&quot;: &quot;false&quot;}"
                                      data-widget-static=""
                                      style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
@@ -51,7 +56,7 @@
                                                 <tr>
                                                     <th>Progress</th>
                                                     <td style="vertical-align: middle;">
-                                                        <div class="progressbar" data-perc="{{ mt_rand(20, 80) }}">
+                                                        <div class="progressbar" data-perc="{{ $order->progress }}">
                                                             <div class="bar"><span></span></div>
                                                             <div class="label"><span></span></div>
                                                         </div>
@@ -91,76 +96,37 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         {{--<button type="button" class="close"--}}
-                                {{--data-dismiss="modal" aria-hidden="true">--}}
-                            {{--×--}}
+                        {{--data-dismiss="modal" aria-hidden="true">--}}
+                        {{--×--}}
                         {{--</button>--}}
-                        <h2 class="modal-title">Detail</h2>
+                        <h2 class="modal-title">订单追踪</h2>
 
                         {{--<div class="progress">--}}
-                            {{--<div class="progress-bar progress-bar-success" style="width: {{ mt_rand(30, 50) }}%"></div>--}}
+                        {{--<div class="progress-bar progress-bar-success" style="width: {{ $order->progress }}%"></div>--}}
                         {{--</div>--}}
                     </div>
                     <div class="modal-body">
+                        @if(!count($orderTracks))
+                            <p>系统正在处理您的订单，稍后请查看详细。</p>
+                        @else
                         <ul class="mini-timeline">
-                            <li class="mini-timeline-lime">
-                                <div class="timeline-icon"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-content">
-                                        <a href="#/" class="name">Vincent
-                                            Keller</a> added new task
-                                        <span class="time">4 mins ago</span>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li class="mini-timeline-deeporange">
-                                <div class="timeline-icon"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-content">
-                                        <a href="#/" class="name">Shawna
-                                            Owen</a> added <a href="#/"
-                                                              class="name">Alonzo
-                                            Keller</a>
-                                        <span class="time">6 mins ago</span>
-                                    </div>
-                                </div>
-                            </li>
-
+                            <?php
+                            $orderTracks = OrderTrack::findByOrderId($order->order_id);
+                            foreach ($orderTracks as $orderTrack):
+                            ?>
                             <li class="mini-timeline-info">
                                 <div class="timeline-icon"></div>
                                 <div class="timeline-body">
                                     <div class="timeline-content">
-                                        <a href="#/" class="name">Christian
-                                            Delgado</a> commented on
-                                        thread
-                                        <span class="time">12 mins ago</span>
+                                        {{ $orderTrack->order_track_name }}
+                                        <span class="time">{{ $orderTrack->created_at }}</span>
                                     </div>
                                 </div>
                             </li>
+                            <?php endforeach;?>
 
-                            <li class="mini-timeline-indigo">
-                                <div class="timeline-icon"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-content">
-                                        <a href="#/" class="name">Jonathan
-                                            Smith</a> added <a href="#/"
-                                                               class="name">Frend
-                                            Pratt</a>
-                                        <span class="time">6 hours ago</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="mini-timeline-lime">
-                                <div class="timeline-icon"></div>
-                                <div class="timeline-body">
-                                    <div class="timeline-content">
-                                        <a href="#/" class="name">Vincent
-                                            Keller</a> added new task
-                                        <span class="time">4 mins ago</span>
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
+                        @endif
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default"

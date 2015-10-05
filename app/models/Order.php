@@ -13,6 +13,13 @@ class Order extends Model
     protected $table = 'orders';
 
     /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'order_id';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -27,6 +34,16 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo('User', 'user_id', 'id');
+    }
+
+    /**
+     * OrderTrack relationship for the order.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function track()
+    {
+        return $this->hasMany('OrderTrack', 'order_id', 'order_id');
     }
 
     /**
