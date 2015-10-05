@@ -4,9 +4,11 @@
     <div class="container" id="login-form">
         <div class="login-logo">
             @if (App::environment('local'))
-                <img src="/src/img/Fanuc_Robot.png">
+                <img src="/src/img/Fanuc_Robot.png" alt="Fanuc">
+                <img src="/src/img/Rockwell.png" alt="Rockwell">
             @else
-                <img src="/dist/img/Fanuc_Robot.png">
+                <img src="/dist/img/Fanuc_Robot.png" alt="Fanuc">
+                <img src="/dist/img/Rockwell.png" alt="Rockwell">
             @endif
         </div>
 
