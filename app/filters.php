@@ -98,11 +98,8 @@ Route::filter('sentry.auth', function()
         return Redirect::route('dashboard.login');
 });
 
-Route::filter('dashboard.nickname', function()
+Route::filter('sentry.guest', function()
 {
-    $user = Sentry::getUser();
-
-    if( empty($user->nickname) && !$user->isSuperUser() ){
-        return Redirect::route('dashboard.nickname');
-    }
+    if( Sentry::check() )
+        return Redirect::route('orders.my_orders');
 });
