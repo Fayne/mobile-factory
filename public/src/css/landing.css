@@ -198,11 +198,11 @@ span {
 
 @media (max-width: 480px) {
     .mission {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     @-webkit-keyframes MISSION-HOVER {
         0%, 100% {
-            font-size: 1.6em;
+            font-size: 1.4em;
             color: white;
         }
         50% {
