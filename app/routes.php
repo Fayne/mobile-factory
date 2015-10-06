@@ -33,9 +33,7 @@ Route::get('logout', ['as' => 'dashboard.logout', 'uses' => 'AuthController@getL
 /*
  * Dashboard
  */
-Route::group(['prefix' => 'dashboard', 'before' => 'sentry.auth'], function()
-{
-
+Route::group(['prefix' => 'dashboard', 'before' => 'sentry.auth'], function () {
 
 
 });
@@ -43,8 +41,7 @@ Route::group(['prefix' => 'dashboard', 'before' => 'sentry.auth'], function()
 /*
  * Orders
  */
-Route::group(['prefix' => 'orders', 'before' => 'sentry.auth'], function()
-{
+Route::group(['prefix' => 'orders', 'before' => 'sentry.auth'], function () {
     /*
      * Signature
      */
@@ -54,4 +51,15 @@ Route::group(['prefix' => 'orders', 'before' => 'sentry.auth'], function()
     Route::get('created', ['as' => 'orders.created', 'uses' => 'OrdersController@created']);
     Route::get('/', ['as' => 'orders.my_orders', 'uses' => 'OrdersController@myOrders']);
 
+});
+
+/*
+ * Schedule
+ */
+Route::group(['prefix' => 'schedules', 'before' => 'sentry.auth'], function () {
+
+    /*
+     * Track
+     */
+    Route::get('track', ['as' => 'schedules.track', 'uses' => 'SchedulesController@track']);
 });

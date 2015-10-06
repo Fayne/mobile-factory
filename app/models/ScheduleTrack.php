@@ -30,6 +30,17 @@ class ScheduleTrack extends Model
     }
 
     /**
+     * Find last track.
+     *
+     *
+     * @return bool | array
+     */
+    public static function findLastTrack()
+    {
+        return static::where('status', 1)->orderBy('created_at', 'desc')->first();
+    }
+
+    /**
      * Convert the model instance to an array.
      *
      * @return array

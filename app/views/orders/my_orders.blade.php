@@ -23,10 +23,6 @@
                         <div class="col-md-12">
                             @foreach($orders as $order)
 
-                                <?php
-                                $orderTracks = OrderTrack::findByOrderId($order->order_id);
-                                ?>
-
                                 <div class="panel panel-sky" data-widget="{&quot;draggable&quot;: &quot;false&quot;}"
                                      data-widget-static=""
                                      style="visibility: visible; opacity: 1; display: block; transform: translateY(0px);">
@@ -89,6 +85,9 @@
     </div>
 
     @foreach($orders as $order)
+        <?php
+        $orderTracks = OrderTrack::findByOrderId($order->order_id);
+        ?>
         <div class="modal fade" id="orderDetail{{ $order->order_code }}"
              tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
              aria-hidden="true">

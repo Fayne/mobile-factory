@@ -35,7 +35,7 @@
                             <a href="{{ route('orders.my_orders') }}"><i class="ti ti-package"></i><span>库存</span></a>
                         </li>
                         <li>
-                            <a href="{{ route('orders.my_orders') }}"><i class="ti ti-cup"></i><span>绩效</span></a>
+                            <a href="{{ route('schedules.track') }}"><i class="ti ti-cup"></i><span>绩效</span></a>
                         </li>
                         <li>
                             <a href="{{ route('orders.my_orders') }}"><i class="ti ti-bar-chart-alt"></i><span>质量</span></a>

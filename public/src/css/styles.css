@@ -29136,3 +29136,9 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   width: 14px;
   height: 14px;
 }
+
+.pie-chart{
+    width: 300px;
+    height: 270px;
+    margin: 0 auto;
+}
