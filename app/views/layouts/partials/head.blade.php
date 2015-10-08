@@ -11,8 +11,8 @@
     <meta name="description" content="Avenxo Admin Theme">
     <meta name="author" content="KaijuThemes">
 
-    <link type='text/css' href='http://fonts.useso.com/css?family=Source+Sans+Pro:300,400,400italic,600'
-          rel='stylesheet'>
+    {{--<link type='text/css' href='http://fonts.useso.com/css?family=Source+Sans+Pro:300,400,400italic,600'--}}
+          {{--rel='stylesheet'>--}}
 
     @if (App::environment('local'))
         <link type="text/css" href="/src/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">

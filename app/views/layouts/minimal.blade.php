@@ -10,8 +10,8 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="author" content="KaijuThemes">
 
-    <link href='http://fonts.useso.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet'
-          type='text/css'>
+    {{--<link href='http://fonts.useso.com/css?family=Source+Sans+Pro:300,400,400italic,600' rel='stylesheet'--}}
+          {{--type='text/css'>--}}
     @if (App::environment('local'))
         <link type="text/css" href="/src/plugins/iCheck/skins/minimal/blue.css" rel="stylesheet">
         <link type="text/css" href="/src/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
