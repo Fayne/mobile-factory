@@ -63,3 +63,19 @@ Route::group(['prefix' => 'schedules', 'before' => 'sentry.auth'], function () {
      */
     Route::get('track', ['as' => 'schedules.track', 'uses' => 'SchedulesController@track']);
 });
+
+/*
+ * Inventory
+ */
+Route::group(['prefix' => 'inventories', 'before' => 'sentry.auth'], function () {
+
+    /*
+     * index
+     */
+    Route::get('/', ['as' => 'inventories.index', 'uses' => 'InventoriesController@index']);
+
+    /*
+     * detail
+     */
+    Route::get('/{id}', ['as' => 'inventories.view', 'uses' => 'InventoriesController@detail']);
+});

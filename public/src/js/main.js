@@ -1,5 +1,7 @@
 $(function () {
 
+    $.wijets.make();
+
     $('.progressbar').each(function () {
         var t = $(this),
             dataPercent = t.attr('data-perc') || 0,
